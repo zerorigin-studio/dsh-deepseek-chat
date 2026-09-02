@@ -1,4 +1,4 @@
 # deepseek-chat bundle patch: add the web chat entry row to the web roster.
 - insert:
     - id: chat-entry
-      name: '@coldcgh/dsh-deepseek-chat'
+      name: '@zerorigin-studio/dsh-deepseek-chat'

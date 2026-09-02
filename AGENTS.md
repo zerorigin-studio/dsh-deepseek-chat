@@ -1,6 +1,6 @@
 # AGENTS.md — dsh-deepseek-chat
 
-`@coldcgh/dsh-deepseek-chat`：DeepSeek Harness（dsh）的 **web 平台对话入口插件**。在侧边栏「新对话」按钮正下方渲染一个「网页对话」按钮，点击后在 **dsh 插件生态**约定的形态里打开 chat.deepseek.com。
+`@zerorigin-studio/dsh-deepseek-chat`：DeepSeek Harness（dsh）的 **web 平台对话入口插件**。在侧边栏「新对话」按钮正下方渲染一个「网页对话」按钮，点击后在 **dsh 插件生态**约定的形态里打开 chat.deepseek.com。
 
 ## 是什么 / 不是什么
 
@@ -44,10 +44,10 @@ dsh-desktop / 桌面壳注入 `window.__DSH_DESKTOP_API__ = "http://127.0.0.1:<p
 ## 构建 / 安装 / 测试
 
 ```bash
-npm pack                                    # 产出 coldcgh-dsh-deepseek-chat-<v>.tgz
-dsh plugin --profile web add ./coldcgh-dsh-deepseek-chat-<v>.tgz   # 安装后重启 harness
+npm pack                                    # 产出 zerorigin-studio-dsh-deepseek-chat-<v>.tgz
+dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-<v>.tgz   # 安装后重启 harness
 ```
 
 - 改完 bump `package.json` version 并更新 CHANGELOG.md。
-- 手动快速迭代：直接替换 `~/.dsh/profiles/web/node_modules/@coldcgh/dsh-deepseek-chat/lib/*` 后重启 harness。
+- 手动快速迭代：直接替换 `~/.dsh/profiles/web/node_modules/@zerorigin-studio/dsh-deepseek-chat/lib/*` 后重启 harness。
 - **提交纪律**：不向 deepseek-harness/ 官方仓库提交任何东西（见根 AGENTS.md 铁律）。

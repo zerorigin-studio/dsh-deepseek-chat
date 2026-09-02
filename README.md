@@ -1,4 +1,4 @@
-# @coldcgh/dsh-deepseek-chat
+# @zerorigin-studio/dsh-deepseek-chat
 
 > DeepSeek Harness 网页对话入口插件 —— 在侧边栏"新对话"按钮正下方显示一个"网页对话"按钮，点击打开 [chat.deepseek.com](https://chat.deepseek.com/)。
 
@@ -15,16 +15,16 @@
 
 ```bash
 # 方式一：npm 官方安装（推荐）
-dsh plugin --profile web add @coldcgh/dsh-deepseek-chat
+dsh plugin --profile web add @zerorigin-studio/dsh-deepseek-chat
 
 # 方式二：Gitee Release tgz（无 npm registry 时）
-# https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/coldcgh-dsh-deepseek-chat-0.3.0.tgz
-curl -L -o dsh-deepseek-chat.tgz https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/coldcgh-dsh-deepseek-chat-0.3.0.tgz
+# https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
+curl -L -o dsh-deepseek-chat.tgz https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
 dsh plugin --profile web add ./dsh-deepseek-chat.tgz
 
 # 方式三：从源码构建安装（开发测试）
 cd dsh-deepseek-chat && npm pack
-dsh plugin --profile web add ./coldcgh-dsh-deepseek-chat-0.3.0.tgz
+dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
 ```
 
 重启 harness 后，侧边栏"新对话"按钮正下方出现「网页对话」按钮。
@@ -62,7 +62,7 @@ cordis.patch.yml bundle patch：把插件加入 web roster
 
 ```bash
 npm pack          # 构建本地 tgz
-dsh plugin --profile web add ./coldcgh-dsh-deepseek-chat-0.3.0.tgz
+dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
 ```
 
 ## 📝 License
