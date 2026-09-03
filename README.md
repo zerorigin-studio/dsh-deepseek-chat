@@ -2,7 +2,7 @@
 
 > DeepSeek Harness 网页对话入口插件 —— 在侧边栏"新对话"按钮正下方显示一个"网页对话"按钮，点击打开 [chat.deepseek.com](https://chat.deepseek.com/)。
 
-![dsh](https://img.shields.io/badge/dsh-plugin-web-4D6BFE) ![version](https://img.shields.io/badge/version-0.3.0-4D6BFE) ![license](https://img.shields.io/badge/license-MIT-green)
+![dsh](https://img.shields.io/badge/dsh-plugin-web-4D6BFE) ![version](https://img.shields.io/badge/version-0.3.3-4D6BFE) ![license](https://img.shields.io/badge/license-MIT-green)
 
 ## ✨ 特性
 
@@ -18,35 +18,28 @@
 dsh plugin --profile web add @zerorigin-studio/dsh-deepseek-chat
 
 # 方式二：Gitee Release tgz（无 npm registry 时）
-# https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
-curl -L -o dsh-deepseek-chat.tgz https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.0/zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
+# https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.3/zerorigin-studio-dsh-deepseek-chat-0.3.3.tgz
+curl -L -o dsh-deepseek-chat.tgz https://gitee.com/coldcgh/dsh-deepseek-chat/releases/download/0.3.3/zerorigin-studio-dsh-deepseek-chat-0.3.3.tgz
 dsh plugin --profile web add ./dsh-deepseek-chat.tgz
 
 # 方式三：从源码构建安装（开发测试）
 cd dsh-deepseek-chat && npm pack
-dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
+dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.3.tgz
 ```
 
 重启 harness 后，侧边栏"新对话"按钮正下方出现「网页对话」按钮。
 
-## 🖥️ 桌面桥接协议（可选增强）
+## 🖥️ 桌面多窗口（标准 SDK，可选增强）
 
-dsh-desktop 会在 harness 页面注入：
-
-```js
-window.__DSH_DESKTOP_API__ = "http://127.0.0.1:<port>/<token>"
-```
-
-按钮点击时：
+dsh-desktop-shell 客户端（≥0.2.9）向托管页面注入**标准桌面 SDK** `window.dsh.desktop`：
 
 ```js
-fetch(window.__DSH_DESKTOP_API__ + "/window/chat", { method: "POST" })
+await window.dsh.desktop.openWindow({ url: CHAT_URL, title: "DeepSeek 网页对话" });
 ```
 
-- 无桥接（纯 web）→ 直接在当前 webview 导航（降级）
-- 桥接失败（启动器已退出）→ 回退导航
-
-token 为每实例随机生成，仅本机 loopback 可用，带 CORS 校验与 token 鉴权。
+- 底层走 WebView2 宿主消息（`window.chrome.webview.postMessage` → `{ type: "dsh.desktop.openWindow", ... }`），无跨端口 fetch/CORS；
+- 无宿主（纯 web / 第三方壳）：自动降级为当前 webview 内导航，插件永不失效；
+- 兼容旧桥接：宿主仍注入 `window.__DSH_DESKTOP_API__`（HTTP 桥接，loopback + token），老协议路径继续可用。
 
 ## 📁 结构
 
@@ -62,7 +55,7 @@ cordis.patch.yml bundle patch：把插件加入 web roster
 
 ```bash
 npm pack          # 构建本地 tgz
-dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.1.tgz
+dsh plugin --profile web add ./zerorigin-studio-dsh-deepseek-chat-0.3.3.tgz
 ```
 
 ## 📝 License
