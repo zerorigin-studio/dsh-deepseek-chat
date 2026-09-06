@@ -1,7 +1,7 @@
 {
   "name": "@zerorigin-studio/dsh-deepseek-chat",
-  "version": "0.3.3",
-  "description": "Web chat entry for DeepSeek Harness (dsh plugin): a sidebar button (right below New Session) that opens chat.deepseek.com in a dedicated desktop window when running under dsh-desktop (Wails bridge), falling back to in-webview navigation in plain web environments",
+  "version": "0.3.4",
+  "description": "Web chat entry for DeepSeek Harness (dsh plugin): a sidebar button (right below New Session) that opens chat.deepseek.com in a dedicated desktop window when running under dsh-desktop (Wails bridge), falling back to a NEW browser tab in plain web / official browser mode (never replacing the current harness page)",
   "type": "module",
   "main": "lib/index.js",
   "exports": {

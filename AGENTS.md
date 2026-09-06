@@ -27,11 +27,11 @@ cordis.patch.yml  bundle patch：把插件 id 放入 web roster
 
 ## 桌面桥接协议（可选增强，勿破坏降级）
 
-dsh-desktop / 桌面壳注入 `window.__DSH_DESKTOP_API__ = "http://127.0.0.1:<port>/<token>"`：
+桌面壳注入标准 SDK `window.dsh.desktop`（旧桥接保留 `window.__DSH_DESKTOP_API__`）：
 
-1. 点击按钮 → `fetch(api + "/window/chat", { method: "POST", keepalive: true })`，让启动器打开**独立聊天子窗口**；
-2. **无桥接**（纯 web）：保持当前 webview 内导航（降级）；
-3. **桥接失败**（启动器已退出）：回退到同一导航。
+1. 点击按钮 → 调用 `window.dsh.desktop.openWindow({ url, title })`（底层走 WebView2 宿主消息，无跨端口 fetch/CORS），让桌面壳打开**独立聊天子窗口**；兼容旧 `window.__DSH_DESKTOP_API__` 的 HTTP 桥接。
+2. **无桥接**（纯 web / 官方浏览器模式）：入口锚点带 `target="_blank"`，打开 chat.deepseek.com 的**新标签页**，当前 harness 页面不被整页跳转走（降级）。
+3. **桥接失败**（宿主已退出/出错）：回退到当前页面导航兜底。
 
 任何改动必须保证 2、3 降级路径一直可用——插件在纯浏览器环境**永不失效**是硬约束。
 
